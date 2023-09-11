@@ -1,0 +1,24 @@
+---
+title: "Challenge 1"
+author: "Nicole Lim"
+date: "2023-08-14"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+\sffamily
+\Huge Hi\par
+
+\Large I'm **Nicole**, a Year 1 \textcolor{orange}{Communications} and \textcolor{cyan}{New Media} student at NUS. My hobby is digital illustration and painting. I played around with some \textcolor{teal}{text effects} here for fun.\par
+
+```{r, out.height= "50%",out.width= "50%", fig.align="center", echo=FALSE,eval=TRUE,fig.cap="I don't have a picture of myself on hand, so I drew this fish."}
+knitr::include_graphics("/Users/nic/Library/CloudStorage/OneDrive-NationalUniversityofSingapore/NM2207/Week 1/fish.jpeg") 
+```
+
+```{r, out.height= "75%",out.width= "75%", fig.align="center", echo=FALSE,eval=TRUE,fig.cap="Screenshot"}
+knitr::include_graphics("/Users/nic/Library/CloudStorage/OneDrive-NationalUniversityofSingapore/NM2207/Week 1/Screenshot 2023-08-14 at 8.41.14 PM.png") 
+```
