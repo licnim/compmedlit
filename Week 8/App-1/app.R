@@ -2,6 +2,17 @@ library(shiny)
 # Define UI ---- Shiny uses fluidpage() to create a layout onto which elements are added
 ui <- fluidPage(
   
+  tags$head( 
+    tags$style(HTML("
+      body {
+        background-color: black;
+        color: white;
+      }"
+      )
+     )
+    
+    ),
+  
   #titlePanel() adds a title element
   titlePanel("This is a title made with titlePanel()"),
   
@@ -9,9 +20,8 @@ ui <- fluidPage(
   sidebarLayout(
     position = "right",
   #one such element is sidebarPanel
-    sidebarPanel("This is some text on the sidebar made with sidebarPanel()",
-                 img(src = "testHB.gif", height = 200, width = 200)
-    ),
+    sidebarPanel("This is some text on the sidebar made with sidebarPanel()", style = "color:black",
+                 img(src = "testHG.gif", height = 200, width = 200)),
   #another such element is mainPanel
     mainPanel(
       h4("This is some text on the main layout made with mainPanel()"),
@@ -31,18 +41,15 @@ ui <- fluidPage(
       em("em() creates italicized (i.e, emphasized) text."),
       br(),
       code("code displays your text similar to computer code"),
-      div("div creates segments of text with a similar style. This division of text is all blue...!", style = "color:blue"),
+      div("div creates segments of text with a similar style. This division of text is all pink!", style = "color:#f7cac9"),
         br(),
         p("span does the same thing as div, but it works with",
-          span("groups of words", style = "color:blue"),
+          span("groups of words", style = "color:#91a8d0"),
           "that appear inside a paragraph."), #span() is hence used within p()
-       a(href="https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/", "Click me!")
-        
+       a(href="https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/", "Click me!"))
     )
-      
-  
   )
-)
+
 # Define server logic ----
 server <- function(input, output) {}
 
