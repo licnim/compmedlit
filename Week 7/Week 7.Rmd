@@ -1,0 +1,251 @@
+---
+title: "R Notebook: Nicole Lim 2 October 2023"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+glimpse(penguins)
+
+```
+
+```{r}
+#Mapping: Determines the size, alpha, etc. of points based on the values of a variable in the data --> goes into aes(): for eg. the higher the flipper length the higher the alpha.
+
+ggplot(data = penguins) +
+  aes(x = bill_depth_mm, 
+      y = bill_length_mm,
+      colour = species,
+      shape = species,
+      size = body_mass_g,
+      alpha = flipper_length_mm) +
+  
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap and Gentoo Penguins",
+       x = "Bill depth (mm)",
+       y = "Bill length (mm)",
+       colour = "Species",
+       shape = "Species",
+       size = "Body Mass",
+       alpha = "Flipper length (mm)",
+       caption = "Source: Palmer Station LTER") +
+  scale_colour_viridis_d()
+
+```
+```{r}
+#Setting: Determines the size, alpha, etc. of points NOT based on the values of a variable in the data --> goes into geom_*()
+
+ggplot (data = penguins) +
+  aes( x = bill_depth_mm,
+       y = bill_length_mm) +
+  geom_point( size = 2,
+              alpha = 0.5)
+```
+
+```{r}
+#Faceting: Smaller plots that display different subsets of the data. Useful for exploring conditional relationships and large data. 
+
+ggplot (data = penguins) +
+  aes( x = bill_depth_mm,
+       y = bill_length_mxm) +
+  geom_point() +
+  facet_grid(species ~ island) +
+  
+ggplot (data = penguins) +
+  aes( x = bill_depth_mm,
+       y = bill_length_mm) +
+  geom_point() +
+  facet_grid(species ~ sex)
+```
+```{r}
+#Faceting: Smaller plots that display different subsets of the data. Useful for exploring conditional relationships and large data.
+#Faceting for single variable to sort data by:
+ggplot (data = penguins) +
+  aes( x = bill_depth_mm,
+       y = bill_length_mm,
+       color = species) +
+  geom_point() +
+  facet_wrap( ~ species) +
+  scale_colour_viridis_d() +
+  guides(color = "none")
+
+ggplot (data = penguins) +
+  aes( x = bill_depth_mm,
+       y = bill_length_mm) +
+  geom_point() +
+  facet_wrap( ~ species, 
+              ncol = 2)
+
+ggplot (data = penguins) +
+  aes( x = bill_depth_mm,
+       y = bill_length_mm) +
+  geom_point() +
+  facet_grid(. ~ species) #Identical to a basic facet_wrap
+```
+```{r}
+library(openintro)
+glimpse(loans_full_schema)
+```
+```{r}
+loans <- loans_full_schema %>%
+  select(loan_amount, interest_rate, term, grade, state, annual_income, homeownership, debt_to_income)
+glimpse(loans)
+```
+```{r}
+#Shape:Skewness (right, left, symmetric) and Modality (unimodal, bimodal, multimodal, uniform)
+
+#Center: centered at mean, median, or mode
+
+#Spread: range (range), standard deviation (sd), inter-quartile range (IQR)
+
+#Anomaly: Unusual observations
+```
+
+```{r}
+#Frequency of value: histogram, where x is the variable of interest
+
+ggplot(loans) +
+  aes(x = loan_amount) +
+  geom_histogram()
+
+#Changing bin width; each bin contains 1 frequency of its value.
+ggplot(loans) +
+  aes(x = loan_amount) +
+  geom_histogram( binwidth = 1000)
+
+ggplot(loans) +
+  aes(x = loan_amount, fill = homeownership) + #Mapping fill/color
+  geom_histogram( binwidth = 5000, alpha = 0.5) + 
+  labs( x = "Loan amount ($)",
+        y = "Frequency",
+        title = "Amounts of Lending Club loans")
+
+ggplot(loans) +
+  aes(x = loan_amount, fill = homeownership) + #Mapping fill/color
+  geom_histogram( binwidth = 5000, alpha = 0.5) + 
+  labs( x = "Loan amount ($)",
+        y = "Frequency",
+        title = "Amounts of Lending Club loans") +
+  facet_wrap( ~ homeownership, ncol = 1)
+```
+
+```{r}
+#Probability density (within a range) [ie. number of times values in a certain range occur over the total number of values]: density plot producing smooth curve, where x is the variable of interest
+
+ggplot(loans) +
+  aes (x = loan_amount) +
+  geom_density()
+
+ggplot(loans) +
+  aes (x = loan_amount) +
+  geom_density( adjust = 0.5) #Adjust bandwidth, higher is smoother because it has a lowered res.
+
+ggplot(loans) +
+  aes (x = loan_amount) +
+  geom_density( adjust = 2)
+
+#Adding a categorical value:
+ggplot(loans) +
+  aes (x = loan_amount,
+       fill = homeownership) +
+  geom_density( adjust = 2, alpha = 0.5) +
+  labs (x = "Loan Amount",
+        y = "Density",
+        title = "Amounts of Lending Club loans",
+        fill = "Homeownership")
+```
+```{r}
+#Boxplots: Indicate important values wrt distribution, eg. median (thick line), IQR (boundaries of box plot), outliers (dots outside the line)
+
+ggplot(loans) +
+  aes (x = interest_rate) +
+  geom_boxplot()
+
+ggplot(loans) +
+  aes (x = interest_rate,
+       y = grade) +
+  geom_boxplot() +
+  labs (x = "Interest Rate ($)",
+        y = "Grade", 
+        title = "Interest Rates of Lending Club loans",
+        subtitle = "by grade of loan")
+```
+```{r}
+#Scatterplots: Allow you to infer details about the r/s between chosen variables. Alternative to this is hex plot which uses color to also accommodate representation of concentrations of datapoints.
+
+ggplot(loans) +
+  aes (x = debt_to_income,
+       y = interest_rate) +
+  geom_point()
+
+ggplot(loans) +
+  aes (x = debt_to_income,
+       y = interest_rate) +
+  geom_hex()
+
+#Hexplots may be better with filtered datasets that let you make use of the full range of counts - color.
+
+ggplot(loans %>% filter(debt_to_income < 100)) +
+  aes (x = debt_to_income,
+       y = interest_rate) +
+  geom_hex()
+```
+```{r}
+#Barplots: R extracts the unique values // count
+ggplot(loans) +
+  aes (x = homeownership) +
+  geom_bar()
+
+#Segmented bar plot
+ggplot(loans) +
+  aes (x = homeownership,
+       fill = grade) +
+  geom_bar()
+
+#Same height = Easier comparison 
+ggplot(loans) +
+  aes (x = homeownership,
+       fill = grade) +
+  geom_bar( position = "fill")
+
+#Swap x to y to change the orientation 
+ggplot(loans) +
+  aes (y = homeownership,
+       fill = grade) +
+  geom_bar( position = "fill") +
+  labs( x = "Proportion",
+        y = "Homeownership",
+        fill = "Grade",
+        title = "Grades of Lending Club loans",
+        subtitle = "and homeownership of lendee")
+```
+
+```{r}
+#Scenarios involving a numeric and a categoric variable or in general variables of more than one type
+
+#Violin plot
+ggplot(loans) + 
+  aes (x = homeownership, 
+       y = loan_amount) +
+  geom_violin()
+
+#Ridge plot
+install.packages("ggridges")
+library(ggridges)
+ggplot (loans) +
+  aes ( x = loan_amount, 
+        y = grade,
+        fill = grade,
+        color = grade) +
+  geom_density_ridges( alpha = 0.5)
+
+
+```
+
+#
