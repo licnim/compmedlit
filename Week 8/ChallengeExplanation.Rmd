@@ -1,0 +1,75 @@
+---
+title: "Challenge explanation"
+author: "Nicole Lim"
+date: "2023-10-09"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Dashboard from code along:
+```{r, out.height= "75%",out.width= "75%", fig.align="center", echo=FALSE,eval=TRUE}
+knitr::include_graphics("/Users/nic/Documents/GitHub/nm2207/Week 8/codealong.png") 
+```
+\newpage
+Dashboard from challenge:
+```{r, out.height= "75%",out.width= "75%", fig.align="center", echo=FALSE,eval=TRUE}
+knitr::include_graphics("/Users/nic/Documents/GitHub/nm2207/Week 8/challenge.png") 
+```
+
+Original example used: 01-hello
+
+1. Dark mode: Change background to black, text to white
+
+```{r, echo = TRUE, eval = FALSE}
+ui <- fluidPage(
+  
+  tags$head( 
+    tags$style(HTML("
+      body {
+        background-color: black;
+        color: white;
+      }"
+      )
+     )
+    
+    )
+```
+
+2. Change the title
+
+```{r, echo = TRUE, eval = FALSE}
+titlePanel("Waiting Times between Eruptions at Old Faithful Geyser")
+```
+
+3. Edit text colours, add additional text, and add line breaks
+
+```{r, echo = TRUE, eval = FALSE}
+ sliderInput(inputId = "bins",
+                  label = tags$span(style="color: black;","Number of Bins:"),
+                  min = 1,
+                  max = 50,
+                  value = 30),
+      
+    div("The height of each bin shows how many values from that data fall into that range.", style="color:black")
+```
+
+4. Add image into sidebar and caption text (using h instead of body/p text)
+```{r, echo = TRUE, eval = FALSE}
+ div(h6("Depicted below is a .gif of the Old Faithful geyser."), style="color:black"),
+    
+    br(),
+    
+    img(src = "oldfaithful.gif", height = 350, width = 200)
+```
+
+5. Edit colours of histogram
+```{r, echo = TRUE, eval = FALSE}
+  hist(x, breaks = bins, col = "navy", border = "cyan",
+         xlab = "Waiting time to next eruption (in mins)",
+         main = "Histogram of waiting times")
+```
+
