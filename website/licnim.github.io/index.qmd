@@ -1,21 +1,64 @@
 ---
-title: "what's in a (user)name?"
-#subtitle: "an analysis of k-pop idols' followers in relation to their usernames"
+title: "What's in a (user)name?"
+subtitle: "A two-part analysis of k-pop idols' Instagram follower counts and a derivative interactive app."
 ---
 
-## My Question: How do usernames affect a K-pop idol's Instagram followers?
+The key metric for an idol's success is most often thought to be their fame. Where Instagram has become a hotspot for K-pop idols to communicate with fans, show off their brand sponsorships. and express themselves, follower counts have also become a quick way to quantify idols' fame, and give an estimate of their popularity.
 
-The maximum length of an Instagram username is 30 characters, within which one has the flexibility to put any letters, numbers, and combinations of underscores and periods.
+But, how exactly do idols gain followers through their profiles?
+
+**My question is as such: What is the optimal Instagram profile for a K-pop idol to achieve the most number of followers?**
+
+Arguably, the most important part of an Instagram profile is the username.
+
+The maximum length of an Instagram username is 30 characters, within which one has the flexibility to put any letters, digits, and combinations of underscores and periods.
 
 I want to study how K-pop idols have made use of these restrictions to create their usernames, and from that, how the designs of their usernames might have affected their follower counts.
 
-I will deduce the trends of what username characteristics are more likely to attract higher numbers of followers, and create a web app that lets one input usernames to receive a certain amount of followers according to my predictions.
+However, usernames are not the only factors affecting one's Instagram fame. There are external factors, like gender, age, and years in the industry. These factors will also be studied.
 
-#### Libraries used
+I will ultimately deduce the trends of what characteristics are more likely to attract higher numbers of followers, and create a web app that lets one create a fake idol profile and receive an appropriate amount of followers according to my predictions.
+
+### Libraries used
 
 ```{r, eval=FALSE, echo = TRUE}
 library(tidyverse)
-library(stringr)
+library(stringr) 
 library(ggmisc)
 
 ```
+
+### Dataset used
+
+"Kpop Idol Instagram Followers" retrieved from: [Faisal Amir on Kaggle](https://www.kaggle.com/datasets/faisalamir/kpop-idol-followers)
+
+```{r, eval=FALSE, echo = TRUE}
+data <- read_csv("kpop_idol_followers.csv")
+
+```
+
+### Variables analysed
+
+#### Characteristics of a username
+
+-   Length (in characters)
+
+-   Presence of and number of special symbols (periods ("."), underscores("\_"), or both)
+
+-   Presence of and number of digits
+
+-   Verification-related words: "official"
+
+-   Identity-related words: inclusion of group name or stage name
+
+#### Characteristics of an idol
+
+-   Gender
+
+-   Age
+
+-   Career length (in years)
+
+-   Nationality
+
+-   Company
