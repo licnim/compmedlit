@@ -1,0 +1,21 @@
+---
+title: "what's in a (user)name?"
+#subtitle: "an analysis of k-pop idols' followers in relation to their usernames"
+---
+
+## My Question: How do usernames affect a K-pop idol's Instagram followers?
+
+The maximum length of an Instagram username is 30 characters, within which one has the flexibility to put any letters, numbers, and combinations of underscores and periods.
+
+I want to study how K-pop idols have made use of these restrictions to create their usernames, and from that, how the designs of their usernames might have affected their follower counts.
+
+I will deduce the trends of what username characteristics are more likely to attract higher numbers of followers, and create a web app that lets one input usernames to receive a certain amount of followers according to my predictions.
+
+#### Libraries used
+
+```{r, eval=FALSE, echo = TRUE}
+library(tidyverse)
+library(stringr)
+library(ggmisc)
+
+```

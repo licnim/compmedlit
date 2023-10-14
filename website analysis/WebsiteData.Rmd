@@ -1,0 +1,114 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+all_data <- read_csv("kpop_idol_followers.csv")
+data <- read_csv("kpop_idol_followers.csv")
+data <- data %>% select(ig_name, Followers)
+glimpse(data)
+
+```
+
+```{r}
+ggplot(data, aes(x = Followers)) + geom_boxplot()
+```
+
+```{r}
+quartiles <- quantile(data$Followers, probs = c( 0.25, 0.75 ))
+
+iqr <- IQR(data$Followers)
+
+lower_outliers <- quartiles[1] - 1.5*iqr
+upper_outliers <- quartiles[2] + 1.5*iqr
+
+data_cleaned <- filter(data, data$Followers < upper_outliers)
+all_data_cleaned <- filter(all_data, all_data$Followers < upper_outliers)
+
+glimpse(data_cleaned)
+```
+
+```{r}
+data_length <- data_cleaned %>% mutate( length = nchar(ig_name) )
+
+ggplot (data_length) +
+  aes ( y = Followers, 
+        x = length) +
+  geom_point()
+
+#data_length_classified <- data_length %>% mutate( short = length < 8, medium = 8 < length & length < 16, long = length > 15)
+
+data_length$categories <- cut(data_length$length, breaks=c(seq(0,25,by=8)), labels=c("short", "medium", "long"))
+
+
+ggplot (data_length) +
+  aes ( y = Followers, 
+        x = length) +
+  geom_point() +
+  facet_wrap(~ categories)
+
+ggplot(data_length) + 
+  aes (x = Followers, 
+      fill = categories) +
+  geom_histogram()
+
+
+
+```
+
+```{r}
+medians_of_length_categories <- tibble(
+  short_median = median(filter(data_length, categories == "short")$Followers),
+  medium_median = median(filter(data_length, categories == "medium")$Followers),
+  long_median = median(filter(data_length, categories == "long")$Followers))
+```
+
+```{r}
+library(stringr)
+data_underscore <- data_cleaned %>% mutate(number_of_underscores = str_count(data_cleaned$ig_name, "_"))
+
+ggplot (data_underscore) +
+  aes ( y = Followers, 
+        x = number_of_underscores) +
+  geom_point()
+```
+
+```{r}
+data_period <- data_cleaned %>% mutate(number_of_periods = str_count(data_cleaned$ig_name, "\\."))
+
+ggplot (data_period) +
+  aes ( y = Followers, 
+        x = number_of_periods) +
+  geom_point()
+```
+
+```{r}
+data_numbers <- data_cleaned %>% mutate(number_of_numbers = str_count(data_cleaned$ig_name, "\\d"))
+
+ggplot (data_numbers) +
+  aes ( y = Followers, 
+        x = number_of_numbers) +
+  geom_point()
+```
+
+```{r}
+#contains_group_name <- str_detect(data_cleaned$ig_name, tolower(all_data_cleaned$Group))
+#contains_group_name <- tibble(as.numeric(contains_group_name))
+
+data_texts <- data_cleaned %>% mutate(
+  contains_official = str_count(data_cleaned$ig_name, "official"),
+  contains_group_name = str_detect(data_cleaned$ig_name, tolower(all_data_cleaned$Group)),
+  contains_stage_name = str_detect(data_cleaned$ig_name, tolower(all_data_cleaned$Stage.Name))
+  )
+
+
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

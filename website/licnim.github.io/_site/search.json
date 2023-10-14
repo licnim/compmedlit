@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "what’s in a (user)name?",
+    "section": "",
+    "text": "The maximum length of an Instagram username is 30 characters, within which one has the flexibility to put any letters, numbers, and combinations of underscores and periods.\nI want to study how K-pop idols have made use of these restrictions to create their usernames, and from that, how the designs of their usernames might have affected their follower counts.\nI will deduce the trends of what username characteristics are more likely to attract higher numbers of followers, and create a web app that lets one input usernames to receive a certain amount of followers according to my predictions.\n\n\n\nlibrary(tidyverse)\nlibrary(stringr)\nlibrary(ggmisc)"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html#my-question-how-do-usernames-affect-a-k-pop-idols-instagram-followers",
+    "href": "index.html#my-question-how-do-usernames-affect-a-k-pop-idols-instagram-followers",
+    "title": "what’s in a (user)name?",
+    "section": "",
+    "text": "The maximum length of an Instagram username is 30 characters, within which one has the flexibility to put any letters, numbers, and combinations of underscores and periods.\nI want to study how K-pop idols have made use of these restrictions to create their usernames, and from that, how the designs of their usernames might have affected their follower counts.\nI will deduce the trends of what username characteristics are more likely to attract higher numbers of followers, and create a web app that lets one input usernames to receive a certain amount of followers according to my predictions.\n\n\n\nlibrary(tidyverse)\nlibrary(stringr)\nlibrary(ggmisc)"
+  }
+]
