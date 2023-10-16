@@ -1,0 +1,192 @@
+---
+title: "Week 9"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document:
+    df_print: paged
+---
+
+### Code-along
+
+Slide 8
+
+```{r, message = FALSE}
+library(tidyverse)
+suppressMessages(library(tidyverse))
+
+tidydata <- tribble(
+~country, ~year, ~cases, ~population,
+"Afghanistan", 1999, 745, 19987071,
+"Afghanistan", 2000, 2666, 20595360,
+"Brazil", 1999, 37737, 172006362,
+"Brazil", 2000, 80488, 174504898,
+"China", 1999, 212258, 1272915272,
+"China", 2000, 213766, 1280428583)
+
+tidydata
+
+nontidydata <- tribble(
+~country,~year,~rate,
+"Afghanistan", 1999, "745/19987071",
+"Afghanistan", 2000, "2666/20595360",
+"Brazil", 1999, "37737/172006362",
+"Brazil", 2000, "80488/174504898",
+"China", 1999, "212258/1272915272",
+"China", 2000, "213766/1280428583")
+
+nontidydata
+```
+
+Slide 11
+
+```{r}
+tidieddata <- nontidydata %>% separate(rate, into = c("cases", "population"), sep = "/")
+
+tidieddata
+```
+
+Slide 12
+
+```{r}
+newtidieddata <- tidieddata %>%
+pivot_longer(
+cols = cases:population,
+names_to = "measurement",
+values_to = "value"
+)
+
+newtidieddata
+```
+
+Slide 14
+
+```{r}
+df <- tribble(
+~id, ~bp1, ~bp2,
+"A", 100, 120,
+"B", 140, 115,
+"C", 120, 125
+)
+df
+
+df %>%
+pivot_longer(
+cols = bp1:bp2,
+names_to = "measurement",
+values_to = "value"
+)
+```
+
+Slide 18
+
+```{r}
+newtidieddata
+
+newtidieddata %>%
+pivot_wider(names_from="measurement",
+values_from="value")
+```
+
+Slide 19
+
+```{r}
+df <- tribble(
+~id, ~measurement, ~value,
+"A", "bp1", 100,
+"B", "bp1", 140,
+"B", "bp2", 115,
+"A", "bp2", 120,
+"A", "bp3", 105
+)
+df
+
+df %>% pivot_wider(
+  names_from = measurement,
+  values_from = value
+)
+```
+
+Install and load rvest
+
+```{r}
+library(rvest)
+```
+
+```{r}
+webpage <- read_html("https://books.toscrape.com/")
+table <- html_elements(webpage, "body")
+```
+
+```{r}
+library(httr)
+library(jsonlite)
+```
+
+```{r}
+# current data
+current_county_data_url <- "https://api.covidactnow.org/v2/counties.csv?apiKey=YOUR_KEY_HERE"
+# historic data
+historic_county_data_url <- "https://api.covidactnow.org/v2/counties.timeseries.csv?apiKey=YOUR_KEY_HERE"
+# individual location data
+individual_loc_data_url <- "https://api.covidactnow.org/v2/county/{state}.csv?apiKey=YOUR_KEY_HERE"
+```
+
+Calling an API:
+
+```{r}
+current_county_data_url <- "https://api.covidactnow.org/v2/counties.csv?apiKey=33382de96fd8441fb6c"
+raw_data <- GET(current_county_data_url)
+raw_data$status
+raw_data$content
+
+individual_loc_data_url <-
+"https://api.covidactnow.org/v2/county/{49}.csv?apiKey=33382de96fd8441fb6c1eca82b3bd4ec"
+raw_data2 <- GET(individual_loc_data_url)
+raw_data2$status
+raw_data2$content
+
+
+```
+
+------------------------------------------------------------------------
+
+### Challenge 1 
+
+```{r}
+pivot_longer_billboard <- billboard %>%
+pivot_longer(
+cols = starts_with("wk"),
+names_to = "week",
+values_to = "rank",
+values_drop_na = TRUE
+)
+
+pivot_longer_billboard <- pivot_longer_billboard %>% mutate(week = parse_number(week))
+
+ggplot(pivot_longer_billboard) +
+  aes(x = week,
+      y = rank) + 
+  geom_point() +
+  geom_line() 
+  
+  
+```
+
+------------------------------------------------------------------------
+
+### Challenge 2
+
+```{r}
+pivot_wider_cms <- cms_patient_experience %>%
+pivot_wider(names_from="measure_cd",
+values_from="prf_rate")
+
+pivot_wider_cms <- cms_patient_experience %>%
+pivot_wider(names_from="measure_cd",
+values_from="prf_rate",
+id_cols = starts_with("org"))
+
+pivot_wider_cms
+
+```
