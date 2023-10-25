@@ -151,7 +151,7 @@ raw_data2$content
 
 ------------------------------------------------------------------------
 
-### Challenge 1 
+### Challenge 1
 
 ```{r}
 pivot_longer_billboard <- billboard %>%
