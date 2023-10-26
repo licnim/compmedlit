@@ -27,4 +27,4 @@ I will ultimately deduce what characteristics are more likely to attract higher 
 
 -   Columns: Stage.name, Group, ig_name, Followers, Gender.x, Date.of.Birth, Company, Country
 
--   Rows: All, excluding outliers in quantity of Followers (based on box plot)
+-   Rows: All
