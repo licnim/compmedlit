@@ -21,12 +21,37 @@ ui <- fluidPage(
                   label = "Choose a gender",
                   choices = c("Male", 
                               "Female")
-                  ),
+      ),
       
       sliderInput("range", 
                   label = "Age",
                   min = 13, max = 60,
                   value = 13),
+      
+      selectInput("ent", 
+                  label = "Choose a company to debut under:",
+                  choices = c("Big Hit Music",
+                              "JYP Entertainment",
+                              "SM Entertainment",
+                              "YG Entertainment",
+                              "Other")
+      ),
+      
+      conditionalPanel(
+        condition = "input.ent=='Other'",
+        textInput("customent", "Enter Company Name")
+      ),
+      
+      sliderInput("range2", 
+                  label = "Years Active",
+                  min = 0, max = 30, 
+                  value = 0),
+      
+      selectInput("nat", 
+                  label = "Where is your idol persona from?",
+                  choices = c("South Korea",
+                              "Somewhere else!")
+      ),
       
       textInput('input', 'Enter username'), 
       #verbatimTextOutput('output')
@@ -34,20 +59,28 @@ ui <- fluidPage(
       actionButton("click", "Generate!")
     ),
     
-  
+    
     
     mainPanel(
       h4(textOutput("title")),
       textOutput("selected_var"),
+      textOutput("age_out"),
       textOutput("min_max"),
-      textOutput("output")
-      )
+      textOutput("output"),
     )
   )
+)
 
 
 # Define server logic
-server <- function(input, output) {
+server <- function(input, output, session) {
+  
+  
+  observeEvent(input$range,
+               {
+                 updateSliderInput(session, "range2",
+                                   max = input$range-12)
+               })
   
   output$title <- renderText({
     paste0("Results for @",input$input)
@@ -59,38 +92,72 @@ server <- function(input, output) {
     isolate(paste("You have selected", input$var))
   })
   
-  output$min_max <- renderText({ 
+  output$age_out <- renderText({ 
     input$click
     req(input$click)
     isolate(paste("You have chosen age", input$range))
   })
-
+  
+  observeEvent( req(input$ent == "Other"), {
+    
+    output$min_max <- renderText({ 
+      input$click
+      req(input$click)
+      isolate(paste("You have chosen to debut with", input$customent))
+    })
+  })
+  
+  observeEvent( req(input$ent != "Other"), {
+    
+    output$min_max <- renderText({ 
+      input$click
+      req(input$click)
+      isolate(paste("You have chosen to debut with", input$ent))
+    })
+  })
+  
+  
   
   library(tidyverse)
   
-  usernamealyser <- function(username) {
+  usernamealyser <- function(username, age, company) {
     
-    if( nchar(username) > 10){ 
-      followers = sample(1000000:2000000,1)
+    if( nchar(username) < 8){ 
+      fame = 1
     } else {
-      followers = sample(0:1000000,1)
+        if( between(nchar(username), 8, 20)){
+          fame = 2
+        }
+      else fame = 1
     }
-      
+    
+    fame = fame + age
+    
+    if(company == "Big Hit Music"){
+      fame = fame ^ 2
+    } else if( company == "YG Entertainment"){
+      fame = round(fame ^ 1.75, digits = 0)
+    } else if( company == "SM Entertainment" | company == "JYP Entertainment"){
+      fame = round(fame ^ 1.5, digits = 0)
+    } else fame = fame
+    
+    followers = fame * sample(700:10000, 1)
+    
     congratulations <- paste0("Your predicted number of followers is: ", followers, "!")
     
     print(congratulations)
     
   }
   
-  
+
   output$output <- renderText({
     #req(input$input)
     input$click
     req(input$click)
-    isolate(usernamealyser(input$input))
+    isolate(usernamealyser(input$input, input$range, input$ent))
   })
   
-                           
+  
 }
 
 # Run the application 

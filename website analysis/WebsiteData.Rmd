@@ -4,16 +4,27 @@ output: html_notebook
 ---
 
 ```{r}
+options(scipen = 999)
 library(tidyverse)
-all_data <- read_csv("kpop_idol_followers.csv")
+library(scales)
+#all_data <- read_csv("kpop_idol_followers.csv")
 data <- read_csv("kpop_idol_followers.csv")
+<<<<<<< Updated upstream
 data <- data %>% select(ig_name, Followers)
 glimpse(data)
+=======
+summary(data)
+#data <- data %>% select(ig_name, Followers)
+#glimpse(data)
+>>>>>>> Stashed changes
 
 ```
 
 ```{r}
-ggplot(data, aes(x = Followers)) + geom_boxplot()
+ggplot(data, aes(x = Followers)) + geom_boxplot() + theme_dark() + labs(title = "Plot of Number of Followers on Idols' Instagram Accounts (n = 406)", x = "Followers") + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  scale_x_continuous(
+    labels = label_number(scale_cut = cut_short_scale())
+  )
 ```
 
 ```{r}
@@ -24,14 +35,14 @@ iqr <- IQR(data$Followers)
 lower_outliers <- quartiles[1] - 1.5*iqr
 upper_outliers <- quartiles[2] + 1.5*iqr
 
-data_cleaned <- filter(data, data$Followers < upper_outliers)
-all_data_cleaned <- filter(all_data, all_data$Followers < upper_outliers)
+data <- filter(data, data$Followers < upper_outliers)
+all_data <- filter(all_data, all_data$Followers < upper_outliers)
 
-glimpse(data_cleaned)
+glimpse(data)
 ```
 
 ```{r}
-data_length <- data_cleaned %>% mutate( length = nchar(ig_name) )
+data_length <- data %>% mutate( length = nchar(ig_name) )
 
 ggplot (data_length) +
   aes ( y = Followers, 
@@ -43,16 +54,25 @@ ggplot (data_length) +
 data_length$categories <- cut(data_length$length, breaks=c(seq(0,25,by=8)), labels=c("short", "medium", "long"))
 
 
-ggplot (data_length) +
+#ggplot (data_length) +
   aes ( y = Followers, 
         x = length) +
   geom_point() +
   facet_wrap(~ categories)
 
-ggplot(data_length) + 
+#ggplot(data_length) + 
   aes (x = Followers, 
       fill = categories) +
   geom_histogram()
+
+ggplot(data_length) + 
+  aes (x = Followers, y = categories, fill = categories, alpha = 0.5) +
+  geom_boxplot(width = 0.4) +
+  scale_x_continuous(trans='log2') +
+  theme_dark() +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.position = "none") 
 
 
 
@@ -66,26 +86,28 @@ medians_of_length_categories <- tibble(
 ```
 
 ```{r}
-library(stringr)
-data_underscore <- data_cleaned %>% mutate(number_of_underscores = str_count(data_cleaned$ig_name, "_"))
+data_underscore <- data %>% mutate(number_of_underscores = str_count(data$ig_name, "_"))
 
 ggplot (data_underscore) +
   aes ( y = Followers, 
         x = number_of_underscores) +
-  geom_point()
+  geom_point()+
+  geom_smooth(method=lm, se=FALSE)
+
 ```
 
 ```{r}
-data_period <- data_cleaned %>% mutate(number_of_periods = str_count(data_cleaned$ig_name, "\\."))
+data_period <- data %>% mutate(number_of_periods = str_count(data$ig_name, "\\."))
 
 ggplot (data_period) +
   aes ( y = Followers, 
         x = number_of_periods) +
-  geom_point()
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE)
 ```
 
 ```{r}
-data_numbers <- data_cleaned %>% mutate(number_of_numbers = str_count(data_cleaned$ig_name, "\\d"))
+data_numbers <- data %>% mutate(number_of_numbers = str_count(data$ig_name, "\\d"))
 
 ggplot (data_numbers) +
   aes ( y = Followers, 
@@ -94,21 +116,46 @@ ggplot (data_numbers) +
 ```
 
 ```{r}
-#contains_group_name <- str_detect(data_cleaned$ig_name, tolower(all_data_cleaned$Group))
+#contains_group_name <- str_detect(data$ig_name, tolower(all_data$Group))
 #contains_group_name <- tibble(as.numeric(contains_group_name))
 
+<<<<<<< Updated upstream
 data_texts <- data_cleaned %>% mutate(
   contains_official = str_count(data_cleaned$ig_name, "official"),
   contains_group_name = str_detect(data_cleaned$ig_name, tolower(all_data_cleaned$Group)),
   contains_stage_name = str_detect(data_cleaned$ig_name, tolower(all_data_cleaned$Stage.Name))
   )
+=======
+#Reformat names: 
+#group_name_no_punctuations <- str_replace_all((all_data$Group), "[[:punct:]]", "")
+
+
+data_texts <- data %>% mutate(
+  
+  contains_official = str_count(data$ig_name, "official"),
+  contains_group_name = str_detect(data$ig_name, tolower(str_replace_all((data$Group), "[[:punct:]]", ""))),
+  contains_stage_name = str_detect(data$ig_name, tolower(str_replace_all((data$Stage.Name), " ", "")))
+ 
+   )
+
+ggplot(data_texts) + 
+  aes (x = Followers, y = contains_group_name, fill = contains_group_name, alpha = 0.5) +
+  geom_boxplot(width = 0.4) +
+  scale_x_continuous(trans='log2') +
+  theme_dark() +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.position = "none") 
+
+
+ggplot(data_texts) + 
+  aes (x = Followers, 
+      fill = contains_stage_name) +
+  geom_histogram()
+
+>>>>>>> Stashed changes
 
 
 
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
-
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file).
-
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
