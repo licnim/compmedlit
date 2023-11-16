@@ -215,6 +215,8 @@ Answer the following questions,
 |               |                        |     (input-output)     |
 |               |                        |                        |
 |               |                        | -   ConditionalPanel   |
+|               |                        |                        |
+|               |                        | -   ObserveEvent       |
 +---------------+------------------------+------------------------+
 
 ------------------------------------------------------------------------
@@ -228,5 +230,47 @@ My errors can be divided into several types
 
 1.  Data Processing
 2.  Data Visualisation
-3.  App Building
-4.  App Logic
+3.  App Logic
+4.  App Building
+
+Data processing had the least amount of errors and challenges because
+the data set I used was very complete and clean, which made it easy to
+work with. There were some challenges in terms of making sure my string
+matching processes (eg. matching the stage names and group names were
+indeed included in the username) were complete and worked accurately for
+different cases because many group names and stage names have
+punctuations, spaces, or capitalisations that mean I cannot simply do a
+str_count().
+
+Data visualisation was also a fairly smooth process because much of my
+visualisations are similar in terms of using box plot and I only have
+one independent variable. I enjoyed the challenge of making the visuals
+of my plot fit the webpage, like finding a suitable dark theme, ensuring
+my margins, text, and colours were cohesive and readable, and making the
+axes look good.
+
+The challenges I faced in the app were more numerous, especially in the
+logic and its features. Before this, I had not really experimented with
+buttons, conditional and reactive text, and other interactive features,
+so incorporating these took a lot of trial and error, especially in
+understanding how user input (eg. a username) moves to become output on
+the app's side (running the username through my function) and then is
+output on their side (where their username is reflected as well as the
+followers they obtain from my function). Ensuring the app would make
+sense came with a few logical puzzles as well: for example, I have
+slider ranges for "age" and "years active". If they were two regular
+sliderInputs, i would likely run into the issue of being able to have
+years active \> age. So, one challenge was making the "years active"
+slider range dependent on "age", which I achieved through experimenting
+with observeEvent and updateSliderInput.
+
+I also faced a lot of errors in trying to incorporate some features that
+I have since scrapped for now to focus on improve the existing features
+of the app and put more time into improving the UI: this includes an
+easily sharable imagemagick output of one's username, followers, and
+other traits they input. The errors mostly came from being unable to
+integrate the output with my function, leading to a unreachable
+variables. I also wanted to make a leaderboard or a local record of
+scores, but I will have to do more extensive research on how to deal
+with the score data storage processes for that before I have anything
+functional.
