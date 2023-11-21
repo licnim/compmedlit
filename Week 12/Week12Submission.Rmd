@@ -274,3 +274,39 @@ variables. I also wanted to make a leaderboard or a local record of
 scores, but I will have to do more extensive research on how to deal
 with the score data storage processes for that before I have anything
 functional.
+
+------------------------------------------------------------------------
+
+## Week 13
+
+-   Answer the following questions,
+
+    -   **(1)** What is the theme of your data story?
+
+    -   **(2)** Why is it important to address this question?
+
+    -   **(3)** Why do you think the data sources that you have curated
+        can help you answer the question?
+
+    -   **(4)** What are the insights from the data and how are they
+        depicted in plots?
+
+    -   **(5)** How did you implement this entire project? Were there
+        any new concepts that you learnt to implement some aspects of
+        it?
+
+The theme of my data story is: What are the factors affecting a K-pop
+celebrity's Instagram followers?
+
+It's important to address this question because it gives us some
+quantifiable insights into what is otherwise seen as an unpredictable
+and volatile field. The incorporation of social media into the
+entertainment industry has become extremely profitable in recent years
+with huge companies and brands getting on the sponsorship and ambassador
+marketing bandwagon. To curate a suitable Instagram presence that makes
+a celebrity attractive to receiving these deals is a valuable skill, and
+the information I can extract from my data story can help greatly in
+that endeavour.
+
+The data source that I have curated gives me comprehensive information
+about the Instagram profiles of a wide range of idols in the industry.
