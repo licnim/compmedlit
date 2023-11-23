@@ -222,7 +222,14 @@ Answer the following questions,
 |                |                       | interactive parts of  |
 |                |                       | the app               |
 |                |                       |                       |
-|                |                       | -   Buttons           |
+|                |                       | -   shinyjs (for      |
+|                |                       |     showing and       |
+|                |                       |     hiding buttons    |
+|                |                       |     based on validity |
+|                |                       |     of username)      |
+|                |                       |                       |
+|                |                       | -   Buttons,          |
+|                |                       |     ModalDialog       |
 |                |                       |                       |
 |                |                       | -   Responsive text   |
 |                |                       |     (input-output)    |
