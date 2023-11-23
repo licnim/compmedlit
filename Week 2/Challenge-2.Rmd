@@ -8,7 +8,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, tidy.opts=list(width.cutoff=80), tidy=TRUE)
 ```
 
 <style>
@@ -84,7 +84,7 @@ In the lecture, we used two data-sets, `starwars` and `anscombe's quartet` that 
 
 **Solution:** 
 
-```{r,echo=TRUE,eval=TRUE}
+```{r,echo=TRUE,eval=TRUE, message=FALSE}
 # Load the necessary package to work with CSV files in R.
 library(tidyverse)
 ```
@@ -98,7 +98,7 @@ library(tidyverse)
 ```{r,echo=TRUE,eval=TRUE}
 # Import the "playlist_data.csv" dataset into R 
 
-read_csv("/Users/nic/Library/CloudStorage/OneDrive-NationalUniversityofSingapore/NM2207/Week 2/playlist_data.csv") 
+read_csv("playlist_data.csv") 
 
 ```
 <br>
@@ -110,7 +110,7 @@ read_csv("/Users/nic/Library/CloudStorage/OneDrive-NationalUniversityofSingapore
 ```{r,echo=TRUE,eval=TRUE}
 # Assign the variable to a dataset 
 
-playlist_data <- read_csv("/Users/nic/Library/CloudStorage/OneDrive-NationalUniversityofSingapore/NM2207/Week 2/playlist_data.csv") 
+playlist_data <- read_csv("playlist_data.csv") 
 
 ```
 
@@ -128,7 +128,7 @@ _From now on, you can use the name of the variable to view the contents of the d
 ```
 <br>
 ```{r, out.height= "400px",out.width= "800px",echo=TRUE,eval=TRUE,fig.cap="Information"}
-knitr::include_graphics("/Users/nic/Library/CloudStorage/OneDrive-NationalUniversityofSingapore/NM2207/Week 2/Screenshot 2023-08-21 at 6.12.25 PM.png")
+knitr::include_graphics("Screenshot 2023-08-21 at 6.12.25 PM.png")
 ```
 <br>
 

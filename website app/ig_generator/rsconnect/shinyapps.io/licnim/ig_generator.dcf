@@ -5,7 +5,7 @@ account: licnim
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 10419484
-bundleId: 7890809
+bundleId: 7961076
 url: https://licnim.shinyapps.io/ig_generator/
 version: 1
 asMultiple: FALSE
