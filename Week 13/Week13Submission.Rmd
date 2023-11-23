@@ -1,0 +1,387 @@
+---
+output:
+  pdf_document: default
+urlcolor: blue
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+## Week 9
+
+**Topic curated:** Factors affecting follower counts for K-pop
+celebrities
+
+I want to study how K-pop idols have made use of these restrictions to
+create their usernames, and from that, how the designs of their
+usernames might have affected their follower counts, alongside the
+influence of external factors, like gender, age, and years in the
+industry.
+
+I will ultimately deduce what characteristics are more likely to attract
+higher numbers of followers, and along with this data story create a web
+app on Shiny that lets one create a fake idol profile with a few chosen
+characteristics and generate an predicted amount of followers.
+
+**Data sources:**
+
+1.  "Kpop Idol Instagram Followers" retrieved from: [Faisal Amir on
+    Kaggle](https://www.kaggle.com/datasets/faisalamir/kpop-idol-followers)
+2.  News articles and other sources that help me categorise data - eg.
+    in assessing the size of idols' company and how this affects data:
+    [Who runs K-pop? Big Hit, backers of BTS, Kakao, label of IU, and CJ
+    ENM, with Mnet music channel, loosen grip of 'Big Three' SM, JYP and
+    YG](https://www.scmp.com/lifestyle/k-pop/news/article/3120731/who-runs-k-pop-big-hit-backers-bts-kakao-label-iu-and-cj-enm)
+
+------------------------------------------------------------------------
+
+## Week 10
+
+-   What does it take for a successful Instagram account in the K-pop
+    industry?
+
+-   K-pop might be one of the only music industries where one's
+    Instagram page is almost as important as the music, being an
+    important platform for fan communication, brand ambassadorship, and
+    self-promotion. One's username, a handle that has to be searched to
+    access an Instagram page, is therefore one of the most critical
+    parts of an idol's persona and a significant determinant in the
+    amount of fame and fans they have. Studying the patterns in idols'
+    usernames, as well as other characteristics that can impact one's
+    Instagram followers, is an critical part of social media management,
+    another up-and-coming industry that, as Communications majors, we
+    should keep our eyes on. Being able to decipher the factors behind
+    something as volatile, unpredictable, but also as lucrative as
+    social media fame is especially valuable information in the
+    reputation economy that the world runs on today.
+
+-   Columns: Stage.name, Group, ig_name, Followers, Gender.x,
+    Date.of.Birth, Company, Country
+
+-   Rows: All
+
+------------------------------------------------------------------------
+
+## Week 11
+
+Answer the following questions,
+
+(1) List the visualizations that you are going to use in your project
+    (Answer: What are the variables that you are going to plot? How will
+    it answer your larger question?),
+
+(2) How do you plan to make it interactive? (Answer: features of
+    ggplot2/shiny/markdown do you plan to use to make the story
+    interactive)
+
+(3) What concepts incorporated in your project were taught in the course
+    and which ones were self-learnt? (Answer: Create a table with topics
+    in one column and Weeks in the other to indicate which concept
+    taught in which week is being used. Leave the entry of the Week
+    column empty for self-learnt concepts)
+
+(4) Visualisations will center around number of followers as an
+    independent variable and a range of dependent variables. These
+    variables include the characteristics of the username or the account
+    holder. These will be largely plotted with box plots and scatter
+    graphs. By extracting the trends from every dependent variable, we
+    can get a better sense of which traits contribute to higher follower
+    counts.
+
+(5) I plan to make it interactive through a Shiny web app that applies
+    the observations of the data analysed in the website to a game-like
+    format where the user can choose different traits and come up with a
+    username, all of which will be evaluated and a resultant number of
+    followers generated. If possible, I would like to add a leaderboard
+    for the number of followers generated.
+
+(6) 
+
++----------------+-----------------------+-----------------------+
+| W eek          | Concept               | Application           |
++================+=======================+=======================+
+| 2              | -   Introduction to   | General data          |
+|                |     data              | handling, use of      |
+|                |                       | ggplot 2 and Shiny to |
+|                | -   Exploratory data  | the entire webpage.   |
+|                |     analyses          |                       |
+|                |                       | Installations of      |
+|                | -   Introduction to   | packages.             |
+|                |     *ggplot2*         |                       |
+|                |                       | Tidyverse actions     |
+|                | -   Introduction to   | (filter,              |
+|                |     *Shiny* dashboard |                       |
++----------------+-----------------------+-----------------------+
+| 3              | -   Introduction to   | Variable coercion     |
+|                |     variables         | (numerical to logical |
+|                |                       | for                   |
+|                | -   Types of          | ca                    |
+|                |     variables         | tegorisation/grouping |
+|                |                       | in plots, character   |
+|                | -   Working with      | to date for           |
+|                |     variables         | agecalc()) for        |
+|                |                       | analysis              |
+|                | -   Data structures   |                       |
+|                |                       | Vector creation and   |
+|                | -   Coercion          | access within ggplot2 |
+|                |                       |                       |
+|                | -   Working with      | Setting variables     |
+|                |     examples          | ("-\>")               |
++----------------+-----------------------+-----------------------+
+| 4              | Manipulating data     | Piping and mutation   |
+|                |                       | to create new         |
+|                | -   Creating lists,   | variables from the    |
+|                |     tibbles and       | data                  |
+|                |     dataframes        |                       |
+|                |                       | casewhen(), if-else   |
+|                | -   Pipes             | logic in manipulating |
+|                |                       | data (mutate)         |
+|                | -   Reading from and  |                       |
+|                |     writing to files  | Manipulation and      |
+|                |                       | analysis of string    |
+|                |                       | data (stringr         |
+|                |                       | package)              |
++----------------+-----------------------+-----------------------+
+| 5              | Functions             | Shiny app is an       |
+|                |                       | adaptation of the     |
+|                |                       | [text analysis        |
+|                |                       | gam                   |
+|                |                       | e](https://github.com |
+|                |                       | /%20li%20%20cnim/comp |
+|                |                       | medli%20t/blob/%20128 |
+|                |                       | f8777%20a%20ab7fea63b |
+|                |                       | d4d%20c85f423%20f8167 |
+|                |                       | ab9b%205aa/W%20ee%20k |
+|                |                       | %205/Challenge-5.pdf) |
+|                |                       | from challenge 5      |
+|                |                       | which is a function.  |
+|                |                       |                       |
+|                |                       | If else logic in      |
+|                |                       | functions.            |
++----------------+-----------------------+-----------------------+
+| 6              | Iterations            | \-                    |
++----------------+-----------------------+-----------------------+
+| 7              | **Visualizing data -  | ggplot2 visualisation |
+|                | 1**                   | and customisation     |
+|                |                       |                       |
+|                | -   <div>             | -   Box plot          |
+|                |                       |                       |
+|                |     -   Types         | -   Scatter Plots     |
+|                |     -   Working with  |                       |
+|                |         *ggplot2,     |                       |
+|                |         cowplot,      |                       |
+|                |         patchwork*    |                       |
+|                |     -   Line plots,   |                       |
+|                |         bar plots,    |                       |
+|                |         histogram,    |                       |
+|                |         pie-chart     |                       |
+|                |                       |                       |
+|                |     </div>            |                       |
++----------------+-----------------------+-----------------------+
+| 8              | **Visualizing data -  | Shiny app             |
+|                | 2**                   |                       |
+|                |                       | -   Customisation of  |
+|                | -   <div>             |     app               |
+|                |                       |                       |
+|                | -   **I**ntroducing   |                       |
+|                |     *Shiny*           |                       |
+|                |                       |                       |
+|                | ```                   |                       |
+|                | -   Creating a        |                       |
+|                |     dashboard         |                       |
+|                |                       |                       |
+|                | -   Working with      |                       |
+|                |     plots and         |                       |
+|                |     other widgets     |                       |
+|                |                       |                       |
+|                | </div>                |                       |
+|                | ```                   |                       |
++----------------+-----------------------+-----------------------+
+| N/A            |                       | The more extensive    |
+|                |                       | customisations of     |
+|                |                       | ggplot                |
+|                |                       |                       |
+|                |                       | -   ggdark            |
+|                |                       |                       |
+|                |                       | -   scales            |
+|                |                       |                       |
+|                |                       | -   ggplot theme()    |
+|                |                       |                       |
+|                |                       | -   Line of best fit  |
+|                |                       |     (geom_smooth)     |
+|                |                       |                       |
+|                |                       | More extensive        |
+|                |                       | customisations of     |
+|                |                       | quarto page           |
+|                |                       |                       |
+|                |                       | -   multi-tab,        |
+|                |                       |     multi-column      |
+|                |                       |     layout            |
+|                |                       |                       |
+|                |                       | Most of the           |
+|                |                       | interactive parts of  |
+|                |                       | the app               |
+|                |                       |                       |
+|                |                       | -   Buttons           |
+|                |                       |                       |
+|                |                       | -   Responsive text   |
+|                |                       |     (input-output)    |
+|                |                       |                       |
+|                |                       | -   ConditionalPanel  |
+|                |                       |                       |
+|                |                       | -   ObserveEvent      |
++----------------+-----------------------+-----------------------+
+
+------------------------------------------------------------------------
+
+## Week 12
+
+*Include the challenges and errors that you faced and how you overcame
+them (if any)*
+
+My errors can be divided into several types
+
+1.  Data Processing
+2.  Data Visualisation
+3.  App Logic
+4.  App Building
+
+Data processing had the least amount of errors and challenges because
+the data set I used was very complete and clean, which made it easy to
+work with. There were some challenges in terms of making sure my string
+matching processes (eg. matching the stage names and group names were
+indeed included in the username) were complete and worked accurately for
+different cases because many group names and stage names have
+punctuations, spaces, or capitalisations that mean I cannot simply do a
+str_count().
+
+Data visualisation was also a fairly smooth process because much of my
+visualisations are similar in terms of using box plot and I only have
+one independent variable. I enjoyed the challenge of making the visuals
+of my plot fit the webpage, like finding a suitable dark theme, ensuring
+my margins, text, and colours were cohesive and readable, and making the
+axes look good.
+
+The challenges I faced in the app were more numerous, especially in the
+logic and its features. Before this, I had not really experimented with
+buttons, conditional and reactive text, and other interactive features,
+so incorporating these took a lot of trial and error, especially in
+understanding how user input (eg. a username) moves to become output on
+the app's side (running the username through my function) and then is
+output on their side (where their username is reflected as well as the
+followers they obtain from my function). Ensuring the app would make
+sense came with a few logical puzzles as well: for example, I have
+slider ranges for "age" and "years active". If they were two regular
+sliderInputs, i would likely run into the issue of being able to have
+years active \> age. So, one challenge was making the "years active"
+slider range dependent on "age", which I achieved through experimenting
+with observeEvent and updateSliderInput.
+
+I also faced a lot of errors in trying to incorporate some features that
+I have since scrapped for now to focus on improve the existing features
+of the app and put more time into improving the UI: this includes an
+easily sharable imagemagick output of one's username, followers, and
+other traits they input. The errors mostly came from being unable to
+integrate the output with my function, leading to a unreachable
+variables. I also wanted to make a leaderboard or a local record of
+scores, but I will have to do more extensive research on how to deal
+with the score data storage processes for that before I have anything
+functional.
+
+------------------------------------------------------------------------
+
+## Week 13
+
+-   Answer the following questions,
+
+    -   **(1)** What is the theme of your data story?
+
+    -   **(2)** Why is it important to address this question?
+
+    -   **(3)** Why do you think the data sources that you have curated
+        can help you answer the question?
+
+    -   **(4)** What are the insights from the data and how are they
+        depicted in plots?
+
+    -   **(5)** How did you implement this entire project? Were there
+        any new concepts that you learnt to implement some aspects of
+        it?
+
+The theme of my data story is: What are the factors affecting a K-pop
+celebrity's Instagram followers?
+
+It's important to address this question because it gives us some
+quantifiable insights into what is otherwise seen as an unpredictable
+and volatile field. The incorporation of social media into the
+entertainment industry has become extremely profitable in recent years
+with huge companies and brands getting on the sponsorship and ambassador
+marketing bandwagon. To curate a suitable Instagram presence that makes
+a celebrity attractive to receiving these deals is a valuable skill, and
+the information I can extract from my data story can help greatly in
+that endeavour.
+
+The data source that I have curated gives me comprehensive information
+about the Instagram profiles of a wide range of idols in the industry,
+as well as about the idols' own profiles: their groups, ages,
+nationalities, et cetera. Additionally, news articles and write-ups
+about the social context that the industry is situated in assisted in
+the analysis of the data.
+
+The insights from the data generally helped me better visualise trends
+that I had observed but could not fully express or be sure of. For
+example, while one can instinctively posit that "clean looking usernames
+do better" -- the plots helped show, past these anecdotal evidences or
+intuitive feelings, that from processing hundreds of idol usernames,
+those that are medium length and void of special symbols or digits
+indeed have more followers. Other insights, like the gap between male
+and female idols or foreign and South Korean idols, also benefited from
+having clear representations of the *size* of the gap, and how dramatic
+of a difference a particular characteristic makes.
+
+My plots mostly relied on comparing medians across different subgroups
+of the data. I found this the most suitable, reliable, and visually
+attractive method of comparison. Because my dataset had a small sample
+of accounts (n=406) in comparison to the range of followers across the
+accounts (from 718--93,337,766), it was difficult to represent them all
+without a large number of outliers muddling the visibility of my plot. I
+solved this issue by representing followers on a logarithmic ln2 scale.
+Although this prevented comparisons between exact numbers of followers,
+I did not find this a necessary function of my plots; I found that the
+insights from simply observing the box plots' whiskers, medians, and
+quartiles without numerical axes were sufficient. After all, a social
+media presence is less about exact numbers of followers, and more about
+being able to secure a higher number than your competitors. I also used
+scatter plots where appropriate when the data couldn't be categorically
+grouped or if there were issues with relying solely on box plots. I
+found the ability to plot lines of best fit with ggplot very useful in
+delineating continous trends.
+
+Ultimately, It was extremely fascinating to see, represented in charts,
+plots, and numbers, how the Instagram follower count has solidified its
+status as a valid metric of fame in less than fifteen years since the
+app's launch. With all the feelings and frivolity that K-pop and fandom
+is associated with, being able to logically dissect and represent such a
+key mechanism in fan culture in my analysis was very satisfying.
+
+I implemented this entire project by first working on all its components
+separately. I had a separate .rmd document to experiment with the plots
+and analyses of the data, another .rmd document to get down the main
+function of the app (the username analysis feature), and an app for
+testing the interactive elements. This not only helped me keep my work
+neat, it also made the process of creating the Quarto website smoother
+by ensuring each part could work on its own before I transferred it into
+the website. A critical concept that I had to pick up to make my project
+possible was the logic of conditionals: if-else. The challenges we had
+did give me a foundation in applying it to a function, but other than
+the literal if-else statements that (admittedly, not very gracefully)
+make up the core of my app, I found that this logic also applied to
+other parts of my app: clicking a button, repeating user's inputted
+texts, et cetera. It's a very basic method of reasoning that I've only
+ever thought about in a real life context; to see it represented
+computationally was interesting.
+
+(Though it's not exactly a concept, an new and important skill I also
+learned was using Github. It not only helped massively with both the
+storage and organisation of my files, but the branch feature worked well
+with any experimental changes I needed to make.)
