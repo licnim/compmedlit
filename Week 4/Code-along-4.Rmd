@@ -1,11 +1,12 @@
 ---
-title: "Week-4: Code-along"
-author: "Insert your name here"
+pdf_document: default
+author: "Nicole Lim"
 date: "`r Sys.Date()`"
 output:
-  html_document:
+  html_document: null
   df_print: paged
-pdf_document: default
+  pdf_document: default
+title: "Week-4: Code-along"
 ---
 
   ```{r setup, include=FALSE}
@@ -20,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### 1. Loading packages (Slide #16)
 
-```{r, eval=TRUE,echo=TRUE}
+```{r, eval=TRUE,echo=TRUE, message = FALSE}
 # Load package tidyverse
 library(tidyverse)
 ```
@@ -29,7 +30,7 @@ library(tidyverse)
 
 ```{r, eval=TRUE,echo=TRUE}
 # Read data from the hotels.csv file and assign it to a variable named, "hotels"
-hotels <- read_csv("/Users/nic/Library/CloudStorage/OneDrive-NationalUniversityofSingapore/NM2207/Week 4/hotels.csv")
+hotels <- read_csv("hotels.csv")
 ```
 
 ### 3. List names of the variables in the data-set (Slide #19)
