@@ -3,8 +3,8 @@ title: "Challenge-3"
 author: "Nicole Lim"
 date: "`r Sys.Date()`"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -27,7 +27,7 @@ font-style: italic;
 
 #### Question 1: Emoji Expressions
 
-Imagine you're analyzing social media posts for sentiment analysis. If you were to create a variable named "postSentiment" to store the sentiment of a post using emojis (😄 for positive, 😐 for neutral, 😢 for negative), what data type would you assign to this variable? Why? (_narrative type question, no code required_)
+Imagine you're analyzing social media posts for sentiment analysis. If you were to create a variable named "postSentiment" to store the sentiment of a post using emojis, what data type would you assign to this variable? Why? (_narrative type question, no code required_)
 
 **Solution:**  _Character. It's not a number_ 
 
