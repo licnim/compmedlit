@@ -97,162 +97,186 @@ Answer the following questions,
 
 (6) 
 
-+----------------+---------------------+---------------------+
-| W eek          | Concept             | Application         |
-+================+=====================+=====================+
-| 2              | -   Introduction to | General data        |
-|                |     data            | handling, use of    |
-|                |                     | ggplot 2 and Shiny  |
-|                | -   Exploratory     | to the entire       |
-|                |     data analyses   | webpage.            |
-|                |                     |                     |
-|                | -   Introduction to | Installations of    |
-|                |     *ggplot2*       | packages.           |
-|                |                     |                     |
-|                | -   Introduction to | Tidyverse actions   |
-|                |     *Shiny*         | (filter,            |
-|                |     dashboard       |                     |
-+----------------+---------------------+---------------------+
-| 3              | -   Introduction to | Variable coercion   |
-|                |     variables       | (numerical to       |
-|                |                     | logical for         |
-|                | -   Types of        | cate                |
-|                |     variables       | gorisation/grouping |
-|                |                     | in plots, character |
-|                | -   Working with    | to date for         |
-|                |     variables       | agecalc()) for      |
-|                |                     | analysis            |
-|                | -   Data structures |                     |
-|                |                     | Vector creation and |
-|                | -   Coercion        | access within       |
-|                |                     | ggplot2             |
-|                | -   Working with    |                     |
-|                |     examples        | Setting variables   |
-|                |                     | ("-\>")             |
-|                |                     |                     |
-|                |                     | Random number       |
-|                |                     | generation (runif)  |
-|                |                     | applied to          |
-|                |                     | usernamealyser()    |
-|                |                     | function            |
-+----------------+---------------------+---------------------+
-| 4              | Manipulating data   | Piping and mutation |
-|                |                     | to create new       |
-|                | -   Creating lists, | variables from the  |
-|                |     tibbles and     | data                |
-|                |     dataframes      |                     |
-|                |                     | casewhen(), if-else |
-|                | -   Pipes           | logic in            |
-|                |                     | manipulating data   |
-|                | -   Reading from    | (mutate)            |
-|                |     and writing to  |                     |
-|                |     files           | Manipulation and    |
-|                |                     | analysis of string  |
-|                |                     | data (stringr       |
-|                |                     | package)            |
-+----------------+---------------------+---------------------+
-| 5              | Functions           | Shiny app           |
-|                |                     | useralyser()        |
-|                |                     | function is an      |
-|                |                     | adaptation of the   |
-|                |                     | [text analysis      |
-|                |                     | ga                  |
-|                |                     | me](ht%20tps://gith |
-|                |                     | ub.com%20/%20%20li% |
-|                |                     | 20%20cnim/comp%20%2 |
-|                |                     | 0medli%20t/blob/%2% |
-|                |                     | 200128%20f8777%20a% |
-|                |                     | 20a%20b7fea63b%20d4 |
-|                |                     | d%20c85%20f423%20f8 |
-|                |                     | 167%20ab9b%%20205aa |
-|                |                     | /W%20ee%20k%20%%202 |
-|                |                     | 05/Challenge-5.pdf) |
-|                |                     | from challenge 5    |
-|                |                     |                     |
-|                |                     | If else logic in    |
-|                |                     | functions.          |
-+----------------+---------------------+---------------------+
-| 6              | Iterations          |                     |
-+----------------+---------------------+---------------------+
-| 7              | **Visualizing       | ggplot2             |
-|                | data - 1**          | visualisation and   |
-|                |                     | customisation       |
-|                | -   <div>           |                     |
-|                |                     | -   Box plot        |
-|                |     -   Types       |                     |
-|                |     -   Working     | -   Scatter Plots   |
-|                |         with        |                     |
-|                |         *ggplot2,   |                     |
-|                |         cowplot,    |                     |
-|                |         patchwork*  |                     |
-|                |     -   Line plots, |                     |
-|                |         bar plots,  |                     |
-|                |         histogram,  |                     |
-|                |         pie-chart   |                     |
-|                |                     |                     |
-|                |     </div>          |                     |
-+----------------+---------------------+---------------------+
-| 8              | **Visualizing       | Shiny app           |
-|                | data - 2**          |                     |
-|                |                     | -   Customisation   |
-|                | -   <div>           |     of app          |
-|                |                     |                     |
-|                | -   **I**ntroducing |                     |
-|                |     *Shiny*         |                     |
-|                |                     |                     |
-|                | ```                 |                     |
-|                | -   Creating a      |                     |
-|                |     dashboard       |                     |
-|                |                     |                     |
-|                | -   Working with    |                     |
-|                |     plots and       |                     |
-|                |     other widgets   |                     |
-|                |                     |                     |
-|                | </div>              |                     |
-|                | ```                 |                     |
-+----------------+---------------------+---------------------+
-| N/A            |                     | The more extensive  |
-|                |                     | customisations of   |
-|                |                     | ggplot              |
-|                |                     |                     |
-|                |                     | -   ggdark          |
-|                |                     |                     |
-|                |                     | -   scales          |
-|                |                     |                     |
-|                |                     | -   Line of best    |
-|                |                     |     fit             |
-|                |                     |     (geom_smooth)   |
-|                |                     |                     |
-|                |                     | More extensive      |
-|                |                     | customisations of   |
-|                |                     | quarto page         |
-|                |                     |                     |
-|                |                     | -   multi-tab,      |
-|                |                     |     multi-column    |
-|                |                     |     layout          |
-|                |                     |                     |
-|                |                     | Most of the         |
-|                |                     | interactive parts   |
-|                |                     | of the app          |
-|                |                     |                     |
-|                |                     | -   shinyjs (for    |
-|                |                     |     showing and     |
-|                |                     |     hiding buttons  |
-|                |                     |     based on        |
-|                |                     |     validity of     |
-|                |                     |     username)       |
-|                |                     |                     |
-|                |                     | -   Buttons,        |
-|                |                     |     ModalDialog     |
-|                |                     |                     |
-|                |                     | -   Responsive text |
-|                |                     |     (input-output)  |
-|                |                     |                     |
-|                |                     | -                   |
-|                |                     |    ConditionalPanel |
-|                |                     |                     |
-|                |                     | -   ObserveEvent    |
-+----------------+---------------------+---------------------+
++----------------+-------------------+-------------------+
+| W eek          | Concept           | Application       |
++================+===================+===================+
+| 2              | -   Introduction  | General data      |
+|                |     to data       | handling, use of  |
+|                |                   | ggplot 2 and      |
+|                | -   Exploratory   | Shiny to the      |
+|                |     data analyses | entire webpage.   |
+|                |                   |                   |
+|                | -   Introduction  | Installations of  |
+|                |     to *ggplot2*  | packages.         |
+|                |                   |                   |
+|                | -   Introduction  | Tidyverse actions |
+|                |     to *Shiny*    | (filter,          |
+|                |     dashboard     |                   |
++----------------+-------------------+-------------------+
+| 3              | -   Introduction  | Variable coercion |
+|                |     to variables  | (numerical to     |
+|                |                   | logical for cate  |
+|                | -   Types of      | g                 |
+|                |     variables     | o                 |
+|                |                   | risation/grouping |
+|                | -   Working with  | in plots,         |
+|                |     variables     | character to date |
+|                |                   | for agecalc())    |
+|                | -   Data          | for analysis      |
+|                |     structures    |                   |
+|                |                   | Vector creation   |
+|                | -   Coercion      | and access within |
+|                |                   | ggplot2           |
+|                | -   Working with  |                   |
+|                |     examples      | Setting variables |
+|                |                   | ("-\>")           |
+|                |                   |                   |
+|                |                   | Random number     |
+|                |                   | generation        |
+|                |                   | (runif) applied   |
+|                |                   | to                |
+|                |                   | usernamealyser()  |
+|                |                   | function          |
++----------------+-------------------+-------------------+
+| 4              | Manipulating data | Piping and        |
+|                |                   | mutation to       |
+|                | -   Creating      | create new        |
+|                |     lists,        | variables from    |
+|                |     tibbles and   | the data          |
+|                |     dataframes    |                   |
+|                |                   | casewhen(),       |
+|                | -   Pipes         | if-else logic in  |
+|                |                   | manipulating data |
+|                | -   Reading from  | (mutate)          |
+|                |     and writing   |                   |
+|                |     to files      | Manipulation and  |
+|                |                   | analysis of       |
+|                |                   | string data       |
+|                |                   | (stringr package) |
++----------------+-------------------+-------------------+
+| 5              | Functions         | Shiny app         |
+|                |                   | useralyser()      |
+|                |                   | function is an    |
+|                |                   | adaptation of the |
+|                |                   | [text analysis ga |
+|                |                   | m                 |
+|                |                   | e](ht%20tps       |
+|                |                   | ://gith%20%20ub.c |
+|                |                   | om%20/%20%2%200li |
+|                |                   | %%2020%20cnim/c%2 |
+|                |                   | 0omp%20%2%200medl |
+|                |                   | i%%2020t/blob/%2% |
+|                |                   | %20200%20128%20f8 |
+|                |                   | 777%20a%%2%20020a |
+|                |                   | %20b7fea63b%20%20 |
+|                |                   | d4%20d%20c85%20f4 |
+|                |                   | 2%203%20f8%20167% |
+|                |                   | 20ab9%20b%%20205a |
+|                |                   | a%20/W%20%20ee%20 |
+|                |                   | k%20%%202%200%205 |
+|                |                   | /Challenge-5.pdf) |
+|                |                   | from challenge 5  |
+|                |                   |                   |
+|                |                   | Imagemagick() to  |
+|                |                   | create profile    |
+|                |                   | summary in web    |
+|                |                   | app               |
+|                |                   |                   |
+|                |                   | If else logic in  |
+|                |                   | functions.        |
++----------------+-------------------+-------------------+
+| 6              | Iterations        |                   |
++----------------+-------------------+-------------------+
+| 7              | **Visualizing     | ggplot2           |
+|                | data - 1**        | visualisation and |
+|                |                   | customisation     |
+|                | -   <div>         |                   |
+|                |                   | -   Box plot      |
+|                |     -   Types     |                   |
+|                |     -   Working   | -   Scatter Plots |
+|                |         with      |                   |
+|                |         *ggplot2, |                   |
+|                |         cowplot,  |                   |
+|                |                   |                   |
+|                |        patchwork* |                   |
+|                |     -   Line      |                   |
+|                |         plots,    |                   |
+|                |         bar       |                   |
+|                |         plots,    |                   |
+|                |                   |                   |
+|                |        histogram, |                   |
+|                |         pie-chart |                   |
+|                |                   |                   |
+|                |     </div>        |                   |
++----------------+-------------------+-------------------+
+| 8              | **Visualizing     | Shiny app         |
+|                | data - 2**        |                   |
+|                |                   | -   Customisation |
+|                | -   <div>         |     of app        |
+|                |                   |                   |
+|                | -                 |                   |
+|                |   **I**ntroducing |                   |
+|                |     *Shiny*       |                   |
+|                |                   |                   |
+|                | ```               |                   |
+|                | -   Creating a    |                   |
+|                |     dashboard     |                   |
+|                |                   |                   |
+|                | -   Working with  |                   |
+|                |     plots and     |                   |
+|                |     other widgets |                   |
+|                |                   |                   |
+|                | </div>            |                   |
+|                | ```               |                   |
++----------------+-------------------+-------------------+
+| N/A            |                   | The more          |
+|                |                   | extensive         |
+|                |                   | customisations of |
+|                |                   | ggplot            |
+|                |                   |                   |
+|                |                   | -   ggdark        |
+|                |                   |                   |
+|                |                   | -   scales        |
+|                |                   |                   |
+|                |                   | -   Line of best  |
+|                |                   |     fit           |
+|                |                   |     (geom_smooth) |
+|                |                   |                   |
+|                |                   | More extensive    |
+|                |                   | customisations of |
+|                |                   | quarto page       |
+|                |                   |                   |
+|                |                   | -   multi-tab,    |
+|                |                   |     multi-column  |
+|                |                   |     layout        |
+|                |                   |                   |
+|                |                   | Most of the       |
+|                |                   | interactive parts |
+|                |                   | of the app        |
+|                |                   |                   |
+|                |                   | -   shinyjs (for  |
+|                |                   |     showing and   |
+|                |                   |     hiding        |
+|                |                   |     buttons based |
+|                |                   |     on validity   |
+|                |                   |     of username)  |
+|                |                   |                   |
+|                |                   | -   Buttons,      |
+|                |                   |     ModalDialog   |
+|                |                   |                   |
+|                |                   | -   Responsive    |
+|                |                   |     text          |
+|                |                   |                   |
+|                |                   |    (input-output) |
+|                |                   |                   |
+|                |                   | -                 |
+|                |                   |  ConditionalPanel |
+|                |                   |                   |
+|                |                   | -   ObserveEvent  |
+|                |                   |                   |
+|                |                   | -   FileInput and |
+|                |                   |     image output  |
++----------------+-------------------+-------------------+
 
 ------------------------------------------------------------------------
 
@@ -393,15 +417,21 @@ function of the app (the username analysis feature), and an app for
 testing the interactive elements. This not only helped me keep my work
 neat, it also made the process of creating the Quarto website smoother
 by ensuring each part could work on its own before I transferred it into
-the website. A critical concept that I had to pick up to make my project
-possible was the logic of conditionals: if-else. The challenges we had
-did give me a foundation in applying it to a function, but other than
-the literal if-else statements that (admittedly, not very gracefully)
-make up the core of my app, I found that this logic also applied to
-other parts of my app: clicking a button, repeating user's inputted
-texts, et cetera. It's a very basic method of reasoning that I've only
-ever thought about in a real life context; to see it represented
-computationally was interesting.
+the website. This method also actually helped me re-implement,
+successfully, one of the concepts I thought I would have to abandon last
+week: the imagemagick integration. By experimenting in a separate R
+document I could safely figure out the logic of the actions and
+transformations I planned
+
+A critical concept that I had to pick up to make my project possible was
+the logic of conditionals: if-else. The challenges we had did give me a
+foundation in applying it to a function, but other than the literal
+if-else statements that (admittedly, not very gracefully) make up the
+core of my app, I found that this logic also applied to other parts of
+my app: clicking a button, repeating user's inputted texts, et cetera.
+It's a very basic method of reasoning that I've only ever thought about
+in a real life context; to see it represented computationally was
+interesting.
 
 (Though it's not exactly a concept, an new and important skill I also
 learned was using Github. It not only helped massively with both the

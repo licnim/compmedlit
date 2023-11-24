@@ -46,7 +46,7 @@ ui <- fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      helpText(HTML("Build your idol persona! </br> Watch your followers grow or shrink depending on the options you choose and the username you construct!")),
+      helpText(HTML("Build your idol persona! </br> Watch your followers grow or shrink depending on the options you choose, the username you construct, and pure randomness!")),
       
       selectInput("var", 
                   label = "Choose a gender",
@@ -80,12 +80,12 @@ ui <- fluidPage(
       
       selectInput("nat", 
                   label = "Where is your idol persona from?",
-                  choices = c("Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czechia", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "North Korea", "South Korea", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe")
+                  choices = c("South Korea", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czechia", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "North Korea", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe")
       ),
       
       textInput('input', 'Enter username'),
       
-      fileInput("file1", "Choose profile picture (optional; square images work best)",
+      fileInput("file1", "Choose profile picture (optional; square images work best, images are not kept after upload)",
                 multiple = FALSE,
                 accept = c("image/jpg, image/png")),
       
@@ -98,8 +98,10 @@ ui <- fluidPage(
       h4(textOutput("title")),
       textOutput("selected_var"),
       textOutput("min_max"),
+      HTML("<br>"),
       htmlOutput("output"),
       textOutput("percentile"),
+      HTML("<br>"),
       textOutput("taunt"),
       HTML("<br>"),
       imageOutput("image")
@@ -276,6 +278,19 @@ server <- function(input, output, session) {
   })
   
   
+  #Logic for percentile
+  
+  
+  output$percentile <- renderText({
+    input$click
+    req(input$click)
+    sum(follower_data < followers) -> more_followers
+    round(more_followers/406 * 100) ->> more_f_percentage
+    isolate(paste0("You have amassed more followers than ", more_f_percentage, "% of idols."))
+  })
+  
+  
+  
   #Creation of shareable image summary of simulator result
   
   library(magick)
@@ -294,12 +309,12 @@ server <- function(input, output, session) {
       circleicon <- c(circle, image_resize(icon, geometry_size_pixels(width = 438, height = 438, preserve_aspect = FALSE)))
       
       image_resize(image_flatten(circleicon, 'in'), "280x280") -> igicon
-      image_annotate(template, as.character(followers), font = 'sans', size = 50, gravity = "north", location = "+115+250", color = "white") -> template_1
-      image_annotate(template_1, font = 'sans', as.character(input$range), size = 50, gravity = "north", location = "-130+250", color = "white") -> template_1
-      image_annotate(template_1, font = 'sans', as.character(input$range2), size = 50, gravity = "north", location = "+360+250", color = "white") -> template_1
-      image_annotate(template_1, paste0("You're more famous than \n", percent,"% of K-pop!"), 
-                     size = 40, gravity = "north", location = "+140+150", color = "tomato") -> template_1
-      image_annotate(template_1, paste0("@", input$input), size = 50, gravity = "north", location ="+130+50", color = "white") -> template_1
+      image_annotate(template, as.character(followers), font = 'Helvetica', size = 50, gravity = "north", location = "+115+240", color = "white", weight = 700) -> template_1
+      image_annotate(template_1, font = 'Helvetica', as.character(input$range), size = 50, gravity = "north", location = "-130+240", color = "white", weight = 700) -> template_1
+      image_annotate(template_1, font = 'Helvetica', as.character(input$range2), size = 50, gravity = "north", location = "+360+240", color = "white", weight = 700) -> template_1
+      image_annotate(template_1, paste0("You're more famous than \n", as.character(more_f_percentage),"% of K-pop!"), 
+                     size = 35, gravity = "north", location = "+130+127", color = "tomato", weight = 650) -> template_1
+      image_annotate(template_1, paste0(input$input), size = 50, gravity = "north", location ="+120+50", color = "white", weight = 500) -> template_1
       
       image_composite(template_1, igicon, offset = "-10+70") -> final
       
@@ -315,12 +330,12 @@ server <- function(input, output, session) {
                   contentType = "image/jpg"))
       } else
         template <- image_read("https://i.imgur.com/8RE37fZ.jpg")
-      image_annotate(template, as.character(followers), font = 'sans', size = 50, gravity = "north", location = "+115+250", color = "white") -> template_1
-      image_annotate(template_1, font = 'sans', as.character(input$range), size = 50, gravity = "north", location = "-130+250", color = "white") -> template_1
-      image_annotate(template_1, font = 'sans', as.character(input$range2), size = 50, gravity = "north", location = "+360+250", color = "white") -> template_1
-      image_annotate(template_1, paste0("You're more famous than \n", percent,"% of K-pop!"), 
-                     size = 40, gravity = "north", location = "+140+150", color = "tomato") -> template_1
-      image_annotate(template_1, paste0("@", input$input), size = 50, gravity = "north", location ="+130+50", color = "white") -> final
+      image_annotate(template, as.character(followers), font = 'Helvetica', size = 50, gravity = "north", location = "+115+240", color = "white", weight = 700) -> template_1
+      image_annotate(template_1, font = 'Helvetica', as.character(input$range), size = 50, gravity = "north", location = "-130+240", color = "white", weight = 700) -> template_1
+      image_annotate(template_1, font = 'Helvetica', as.character(input$range2), size = 50, gravity = "north", location = "+360+240", color = "white", weight = 700) -> template_1
+      image_annotate(template_1, paste0("You're more famous than \n", as.character(more_f_percentage),"% of K-pop!"), 
+                     size = 35, gravity = "north", location = "+130+127", color = "tomato", font = 'Helvetica', weight = 650) -> template_1
+      image_annotate(template_1, paste0(input$input), size = 45, gravity = "north", location ="+120+50", color = "white", weight = 500) -> final
       
       #temp file
       tmpfile <- final %>%
@@ -335,25 +350,13 @@ server <- function(input, output, session) {
     })
   }, deleteFile=TRUE)
 
-  
-  #Logic for percentile
-  
-  
-  output$percentile <- renderText({
-    input$click
-    req(input$click)
-    sum(follower_data < followers) -> more_followers
-    round(more_followers/406 * 100) -> more_f_percentage
-    isolate(paste0("You have amassed more followers than ", more_f_percentage, "% of idols."))
-  })
-    
-  
+
   #Continuation of Main Panel text
   
   output$taunt <- renderText({
     input$click
     req(input$click)
-    isolate(paste0("Experiment with the options available and try to beat this number! Right-click on your image to save it."))
+    isolate(paste0("Experiment with the options available and try to beat this number! Right-click or long press on your image to save it."))
   })
   
   
