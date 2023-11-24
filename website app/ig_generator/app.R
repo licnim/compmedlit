@@ -94,7 +94,8 @@ ui <- fluidPage(
       h4(textOutput("title")),
       textOutput("selected_var"),
       textOutput("min_max"),
-      textOutput("output"),
+      htmlOutput("output"),
+      textOutput("percentile"),
       textOutput("taunt")
     )
   )
@@ -103,6 +104,9 @@ ui <- fluidPage(
 
 # Define server logic
 server <- function(input, output, session) {
+  
+  follower_data <- read.csv("kpop_idol_followers.csv")
+  follower_data <- follower_data$Followers
   
   observeEvent(input$range,
                {
@@ -127,7 +131,7 @@ server <- function(input, output, session) {
   
     
   observeEvent(input$input,{
-    if(str_count(input$input, " |\\`|\\~|\\!|\\@|\\#|\\$|\\%|\\^|\\&|\\*|\\(|\\)|\\+|\\=|\\[|\\{|\\]|\\}|\\||\\\\|\\'|\\<|\\,|\\>|\\?|\\/|\"|\\;|\\:")>0)
+    if(str_count(input$input, " |\\`|\\~|\\!|\\@|\\#|\\$|\\%|\\^|\\&|\\*|\\(|\\)|\\+|\\=|\\[|\\{|\\]|\\}|\\||\\\\|\\'|\\<|\\,|\\>|\\?|\\/|\"|\\;|\\:|\\-")>0)
     {
       showModal(modalDialog(
         title = "Error!",
@@ -170,22 +174,23 @@ server <- function(input, output, session) {
   })
   
   
-  
   library(tidyverse)
   
-  usernamealyser <- function(username, age, company, gender, nationality) {
+  usernamealyser <- function(username, age, company, gender, nationality, career) {
     
+    # Characteristics of username
     if( nchar(username) < 8){ 
       fame = 1
     } else {
         if( between(nchar(username), 8, 20)){
-          fame = 2
+          fame = 5
         }
       else fame = 1
     }
     
-    fame = fame + age - (5*str_count(username, "_"))
-    
+    fame = fame + age/2 + career - (5*str_count(username, "_"))
+   
+    # Characteristics of idol 
     if( gender == "Male"){
       fame*2
     }
@@ -202,22 +207,56 @@ server <- function(input, output, session) {
       fame = round(fame ^ 1.5, digits = 0)
     } else fame = fame
     
+    #RNG for greater range: corresponding to "miracle" or "lost potential" cases
     
+    runif(n=1, min = 1, max = 100) ->> rng
     
-    followers = fame * sample(700:10000, 1)
+    if(rng < 10){
+      random_fame = sample(-10000:1, 1)
+    } else if(between(rng, 10, 95) ){
+      random_fame = sample(100:25000, 1)
+    } else if(rng > 95){
+      random_fame = sample(10000000:50000000, 1)
+    }
     
-    congratulations <- paste0("Your predicted number of followers is: ",followers,"!")
+    if(rng < 10){
+      luck=paste0("Unfortunately, however, your ",career," year career has been rocked by numerous scandals.")
+    } else if(between(rng, 10, 95)){
+      luck=paste0("Your ",career," year career has been average. You have a loyal core fanbase, but lack the general public's support.")
+    } else if(rng > 95){
+      luck=paste0("Your ",career," year career has been amazing! You're a superstar beloved domestically and internationally!")
+    }
     
+    followers <<- fame * sample(5000:10000, 1) + random_fame
+    
+    congratulations <- paste0(luck, "<br>", "Your predicted number of followers is: ",followers,"!")
+    
+    print(luck)
     print(congratulations)
+    
     
   }
 
+  
   output$output <- renderText({
     #req(input$input)
     input$click
     req(input$click)
-    isolate(usernamealyser(input$input, input$range, input$ent, input$var, input$nat))
+    isolate(usernamealyser(input$input, input$range, input$ent, input$var, input$nat, input$range2))
   })
+  
+  
+  #logic for percentile
+  
+  
+  output$percentile <- renderText({
+    input$click
+    req(input$click)
+    sum(follower_data < followers) -> more_followers
+    round(more_followers/406 * 100) -> more_f_percentage
+    isolate(paste0("You have amassed more followers than ", more_f_percentage, "% of idols."))
+  })
+    
   
   
   output$taunt <- renderText({
